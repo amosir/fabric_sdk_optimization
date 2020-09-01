@@ -1,5 +1,3 @@
-
-
 function createOrg1 {
 
   echo

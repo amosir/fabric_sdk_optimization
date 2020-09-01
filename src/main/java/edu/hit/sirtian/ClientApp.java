@@ -29,7 +29,7 @@ public class ClientApp {
 		Path networkConfigPath = Paths.get("test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
 
 
-		int taskCount = 200;
+		int taskCount = 1;
 		ExecutorService executor = Executors.newFixedThreadPool(taskCount);
 
 		CountDownLatch countDownLatch = new CountDownLatch(taskCount);
@@ -55,7 +55,7 @@ public class ClientApp {
 						contract.submitTransaction("createCar", "CAR10", "VW", "Polo", "Grey", "Mary");
 //
 						result = contract.evaluateTransaction("queryCar", "CAR10");
-						System.out.println(new String(result));
+//						System.out.println(new String(result));
 //
 //						contract.submitTransaction("changeCarOwner", "CAR10", "Archie");
 //

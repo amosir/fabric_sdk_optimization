@@ -392,6 +392,10 @@ if [ "$CC_INIT_FCN" = "NA" ]; then
 	echo
 else
 	chaincodeInvokeInit 1 2
+	echo "==============query chaincode wth org1============"
+	chaincodeQuery 1
+	echo "==============query chaincode wth org2============"
+	chaincodeQuery 2
 fi
 
 exit 0
