@@ -29,7 +29,7 @@ public class ClientApp {
 		Path networkConfigPath = Paths.get("test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
 
 
-		int taskCount = 1;
+		int taskCount = 1000;
 		ExecutorService executor = Executors.newFixedThreadPool(taskCount);
 
 		CountDownLatch countDownLatch = new CountDownLatch(taskCount);
@@ -55,51 +55,23 @@ public class ClientApp {
 						contract.submitTransaction("createCar", "CAR10", "VW", "Polo", "Grey", "Mary");
 //
 						result = contract.evaluateTransaction("queryCar", "CAR10");
-//						System.out.println(new String(result));
+						System.out.println(new String(result));
 //
-//						contract.submitTransaction("changeCarOwner", "CAR10", "Archie");
+						contract.submitTransaction("changeCarOwner", "CAR10", "Archie");
 //
-//						result = contract.evaluateTransaction("queryCar", "CAR10");
-//						System.out.println(new String(result));
-
-						countDownLatch.countDown();
+						result = contract.evaluateTransaction("queryCar", "CAR10");
+						System.out.println(new String(result));
 					}
 				}catch (Exception e){
 					e.printStackTrace();
+				}finally {
+					countDownLatch.countDown();
 				}
 			});
-
-			countDownLatch.await();
-			executor.shutdown();
 		}
-
-
-
-//		Gateway.Builder builder = Gateway.createBuilder();
-//		builder.identity(wallet, "appUser").networkConfig(networkConfigPath).discovery(true);
-//
-//		// create a gateway connection
-//		try (Gateway gateway = builder.connect()) {
-//
-//			// get the network and contract
-//			Network network = gateway.getNetwork("mychannel");
-//			Contract contract = network.getContract("fabcar");
-//
-//			byte[] result;
-//
-//			result = contract.evaluateTransaction("queryAllCars");
-//			System.out.println(new String(result));
-//
-//			contract.submitTransaction("createCar", "CAR10", "VW", "Polo", "Grey", "Mary");
-//
-//			result = contract.evaluateTransaction("queryCar", "CAR10");
-//			System.out.println(new String(result));
-//
-//			contract.submitTransaction("changeCarOwner", "CAR10", "Archie");
-//
-//			result = contract.evaluateTransaction("queryCar", "CAR10");
-//			System.out.println(new String(result));
-//		}
+		countDownLatch.await();
+		executor.shutdown();
+		System.out.println("++++++++++++finished++++++++++++");
 	}
 
 }

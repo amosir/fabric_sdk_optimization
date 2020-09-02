@@ -42,7 +42,7 @@ Organizations:
                 Rule: "OR('OrdererMSP.admin')"
 
         OrdererEndpoints:
-            - orderer0.example.com:7050
+            - orderer0.example.com:17050
 
     - &Org1
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -77,7 +77,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.org1.example.com
-              Port: 7051
+              Port: 17051
 
     - &Org2
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -111,7 +111,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.org2.example.com
-              Port: 9051
+              Port: 27051
 
 ################################################################################
 #
@@ -221,23 +221,23 @@ Orderer: &OrdererDefaults
     EtcdRaft:
         Consenters:
         - Host: orderer0.example.com
-          Port: 7050
+          Port: 17050
           ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/server.crt
           ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/server.crt
         - Host: orderer1.example.com
-          Port: 7050
+          Port: 18050
           ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
           ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
         - Host: orderer2.example.com
-          Port: 7050
+          Port: 19050
           ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
           ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
         - Host: orderer3.example.com
-          Port: 7050
+          Port: 20050
           ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
           ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
         - Host: orderer4.example.com
-          Port: 7050
+          Port: 21050
           ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
           ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
 

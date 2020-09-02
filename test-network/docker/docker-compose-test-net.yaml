@@ -35,7 +35,7 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_LISTENPORT=7050
+      - ORDERER_GENERAL_LISTENPORT=17050
       - ORDERER_GENERAL_GENESISMETHOD=file
       - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
@@ -58,7 +58,7 @@ services:
         - ../organizations/ordererOrganizations/example.com/orderers/orderer0.example.com/tls/:/var/hyperledger/orderer/tls
         - orderer0.example.com:/var/hyperledger/production/orderer
     ports:
-      - 17050:7050
+      - 17050:17050
     networks:
       - test
 
@@ -68,7 +68,7 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_LISTENPORT=7050
+      - ORDERER_GENERAL_LISTENPORT=18050
       - ORDERER_GENERAL_GENESISMETHOD=file
       - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
@@ -91,7 +91,7 @@ services:
       - ../organizations/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer1.example.com:/var/hyperledger/production/orderer
     ports:
-      - 18050:7050
+      - 18050:18050
     networks:
       - test
 
@@ -101,7 +101,7 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_LISTENPORT=7050
+      - ORDERER_GENERAL_LISTENPORT=19050
       - ORDERER_GENERAL_GENESISMETHOD=file
       - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
@@ -124,7 +124,7 @@ services:
       - ../organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer2.example.com:/var/hyperledger/production/orderer
     ports:
-      - 19050:7050
+      - 19050:19050
     networks:
       - test
 
@@ -134,7 +134,7 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_LISTENPORT=7050
+      - ORDERER_GENERAL_LISTENPORT=20050
       - ORDERER_GENERAL_GENESISMETHOD=file
       - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
@@ -157,7 +157,7 @@ services:
       - ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer3.example.com:/var/hyperledger/production/orderer
     ports:
-      - 20050:7050
+      - 20050:20050
     networks:
       - test
 
@@ -167,7 +167,7 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
-      - ORDERER_GENERAL_LISTENPORT=7050
+      - ORDERER_GENERAL_LISTENPORT=21050
       - ORDERER_GENERAL_GENESISMETHOD=file
       - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
       - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
@@ -190,7 +190,7 @@ services:
       - ../organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/:/var/hyperledger/orderer/tls
       - orderer4.example.com:/var/hyperledger/production/orderer
     ports:
-      - 21050:7050
+      - 21050:21050
     networks:
       - test
 
@@ -214,12 +214,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer0.org1.example.com
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051 peer1.org1.example.com:7051 peer2.org1.example.com:7051 peer3.org1.example.com:7051 peer4.org1.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer0.org1.example.com:17051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:17051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org1.example.com:17052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:17052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:17051 peer1.org1.example.com:18051 peer2.org1.example.com:19051 peer3.org1.example.com:20051 peer4.org1.example.com:21051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:17051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
         - /var/run/:/host/var/run/
@@ -229,7 +229,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 17051:7051
+      - 17051:17051
     networks:
       - test
 
@@ -252,12 +252,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer1.org1.example.com
-      - CORE_PEER_ADDRESS=peer1.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051 peer1.org1.example.com:7051 peer2.org1.example.com:7051 peer3.org1.example.com:7051 peer4.org1.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer1.org1.example.com:18051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:18051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org1.example.com:18052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:18052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:17051 peer1.org1.example.com:18051 peer2.org1.example.com:19051 peer3.org1.example.com:20051 peer4.org1.example.com:21051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:18051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -267,7 +267,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 18051:7051
+      - 18051:18051
     networks:
       - test
 
@@ -290,12 +290,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer2.org1.example.com
-      - CORE_PEER_ADDRESS=peer2.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer2.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051 peer1.org1.example.com:7051 peer2.org1.example.com:7051 peer3.org1.example.com:7051 peer4.org1.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer2.org1.example.com:19051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:19051
+      - CORE_PEER_CHAINCODEADDRESS=peer2.org1.example.com:19052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:19052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:17051 peer1.org1.example.com:18051 peer2.org1.example.com:19051 peer3.org1.example.com:20051 peer4.org1.example.com:21051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org1.example.com:19051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -305,7 +305,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 19051:7051
+      - 19051:19051
     networks:
       - test
 
@@ -328,12 +328,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer3.org1.example.com
-      - CORE_PEER_ADDRESS=peer3.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer3.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051 peer1.org1.example.com:7051 peer2.org1.example.com:7051 peer3.org1.example.com:7051 peer4.org1.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer3.org1.example.com:20051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:20051
+      - CORE_PEER_CHAINCODEADDRESS=peer3.org1.example.com:20052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:20052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:17051 peer1.org1.example.com:18051 peer2.org1.example.com:19051 peer3.org1.example.com:20051 peer4.org1.example.com:21051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.org1.example.com:20051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -343,7 +343,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 20051:7051
+      - 20051:20051
     networks:
       - test
 
@@ -366,12 +366,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer4.org1.example.com
-      - CORE_PEER_ADDRESS=peer4.org1.example.com:7051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
-      - CORE_PEER_CHAINCODEADDRESS=peer4.org1.example.com:7052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051 peer1.org1.example.com:7051 peer2.org1.example.com:7051 peer3.org1.example.com:7051 peer4.org1.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer4.org1.example.com:21051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:21051
+      - CORE_PEER_CHAINCODEADDRESS=peer4.org1.example.com:21052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:21052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:17051 peer1.org1.example.com:18051 peer2.org1.example.com:19051 peer3.org1.example.com:20051 peer4.org1.example.com:21051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.org1.example.com:21051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -381,7 +381,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 21051:7051
+      - 21051:21051
     networks:
       - test
 
@@ -404,12 +404,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer0.org2.example.com
-      - CORE_PEER_ADDRESS=peer0.org2.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051 peer1.org2.example.com:9051 peer2.org2.example.com:9051 peer3.org2.example.com:9051 peer4.org2.example.com:9051
+      - CORE_PEER_ADDRESS=peer0.org2.example.com:27051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:27051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.org2.example.com:27052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:27052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:27051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:27051 peer1.org2.example.com:28051 peer2.org2.example.com:29051 peer3.org2.example.com:30051 peer4.org2.example.com:31051
       - CORE_PEER_LOCALMSPID=Org2MSP
     volumes:
         - /var/run/:/host/var/run/
@@ -419,7 +419,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 27051:9051
+      - 27051:27051
     networks:
       - test
 
@@ -442,12 +442,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer1.org2.example.com
-      - CORE_PEER_ADDRESS=peer1.org2.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer1.org2.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:9051 peer1.org2.example.com:9051 peer2.org2.example.com:9051 peer3.org2.example.com:9051 peer4.org2.example.com:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:9051
+      - CORE_PEER_ADDRESS=peer1.org2.example.com:28051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:28051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.org2.example.com:28052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:28052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:28051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:27051 peer1.org2.example.com:28051 peer2.org2.example.com:29051 peer3.org2.example.com:30051 peer4.org2.example.com:31051
       - CORE_PEER_LOCALMSPID=Org2MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -457,7 +457,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 28051:9051
+      - 28051:28051
     networks:
       - test
 
@@ -480,12 +480,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer2.org2.example.com
-      - CORE_PEER_ADDRESS=peer2.org2.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer2.org2.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org2.example.com:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051 peer1.org2.example.com:9051 peer2.org2.example.com:9051 peer3.org2.example.com:9051 peer4.org2.example.com:9051
+      - CORE_PEER_ADDRESS=peer2.org2.example.com:29051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:29051
+      - CORE_PEER_CHAINCODEADDRESS=peer2.org2.example.com:29052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:29052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org2.example.com:29051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:27051 peer1.org2.example.com:28051 peer2.org2.example.com:29051 peer3.org2.example.com:30051 peer4.org2.example.com:31051
       - CORE_PEER_LOCALMSPID=Org2MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -495,7 +495,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 29051:9051
+      - 29051:29051
     networks:
       - test
 
@@ -518,12 +518,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer3.org2.example.com
-      - CORE_PEER_ADDRESS=peer3.org2.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer3.org2.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.org2.example.com:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051 peer1.org2.example.com:9051 peer2.org2.example.com:9051 peer3.org2.example.com:9051 peer4.org2.example.com:9051
+      - CORE_PEER_ADDRESS=peer3.org2.example.com:30051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:30051
+      - CORE_PEER_CHAINCODEADDRESS=peer3.org2.example.com:30052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:30052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.org2.example.com:30051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:27051 peer1.org2.example.com:28051 peer2.org2.example.com:29051 peer3.org2.example.com:30051 peer4.org2.example.com:31051
       - CORE_PEER_LOCALMSPID=Org2MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -533,7 +533,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 30051:9051
+      - 30051:30051
     networks:
       - test
 
@@ -556,12 +556,12 @@ services:
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
       # Peer specific variabes
       - CORE_PEER_ID=peer4.org2.example.com
-      - CORE_PEER_ADDRESS=peer4.org2.example.com:9051
-      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
-      - CORE_PEER_CHAINCODEADDRESS=peer4.org2.example.com:9052
-      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.org2.example.com:9051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051 peer1.org2.example.com:9051 peer2.org2.example.com:9051 peer3.org2.example.com:9051 peer4.org2.example.com:9051
+      - CORE_PEER_ADDRESS=peer4.org2.example.com:31051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:31051
+      - CORE_PEER_CHAINCODEADDRESS=peer4.org2.example.com:31052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:31052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.org2.example.com:31051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:27051 peer1.org2.example.com:28051 peer2.org2.example.com:29051 peer3.org2.example.com:30051 peer4.org2.example.com:31051
       - CORE_PEER_LOCALMSPID=Org2MSP
     volumes:
       - /var/run/:/host/var/run/
@@ -571,7 +571,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     ports:
-      - 31051:9051
+      - 31051:31051
     networks:
       - test
 
