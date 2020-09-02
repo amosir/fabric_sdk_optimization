@@ -1,3 +1,8 @@
+### 启动
+需要先根据 hyperledger-fabric 官网提示进行基础环境搭建
+1. 进入 `scripts`目录，运行`./startFabric.sh`进行网络搭建
+2. 返回到项目目录，执行`mvn test`进行测试
+
 ### 端口分配
 
 |          域名          |    端口     |
