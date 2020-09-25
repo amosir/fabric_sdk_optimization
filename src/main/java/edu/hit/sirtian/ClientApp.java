@@ -32,17 +32,30 @@ public class ClientApp {
         private static final Path networkConfigPath =
                 Paths.get("test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
 
-        private CountDownLatch latch;
+        private static Gateway.Builder builder = Gateway.createBuilder();
 
-        private int carNo;
+        private static Gateway gateway;
+
+        // get the network and contract
+        private static Network network;
+        private static Contract contract;
 
         static {
             try {
                 wallet = Wallets.newFileSystemWallet(Paths.get("wallet"));
+                builder.identity(wallet, "appUser").networkConfig(networkConfigPath).discovery(false);
+                gateway =  builder.connect();
+                network = gateway.getNetwork("mychannel");
+                contract = network.getContract("fabcar");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+        private CountDownLatch latch;
+
+        private int carNo;
 
         public FabcarThread(CountDownLatch latch,int carNo) {
             this.latch = latch;
@@ -52,47 +65,37 @@ public class ClientApp {
         @Override
         public void run() {
             try{
-                Gateway.Builder builder = Gateway.createBuilder();
-                builder.identity(wallet, "appUser").networkConfig(networkConfigPath).discovery(false);
+                ArrayList<Peer> peerList = new ArrayList(network.getChannel().getPeers());
 
-                // create a gateway connection
-                try (Gateway gateway = builder.connect()) {
+                Collections.shuffle(peerList);
 
-                    // get the network and contract
-                    Network network = gateway.getNetwork("mychannel");
-                    Contract contract = network.getContract("fabcar");
+                List<Peer> endorsers = new ArrayList<>(2);
 
-                    ArrayList<Peer> peerList = new ArrayList(network.getChannel().getPeers());
-                    Collections.shuffle(peerList);
-
-                    List<Peer> endorsers = new ArrayList<>(2);
-
-                    for(Peer peer:peerList){
-                        if(peer.getName().contains("org1")){
-                            endorsers.add(peer);
-                            break;
-                        }
+                for(Peer peer:peerList){
+                    if(peer.getName().contains("org1")){
+                        endorsers.add(peer);
+                        break;
                     }
-
-                    for(Peer peer:peerList){
-                        if(peer.getName().contains("org2")){
-                            endorsers.add(peer);
-                            break;
-                        }
-                    }
-
-                    Transaction transaction  = contract.createTransaction("createCar");
-
-                    transaction.setEndorsingPeers(endorsers);
-
-                    transaction.submit("CAR" + carNo, "VW" + carNo, "Polo", "Grey", "Mary");
-
-                    byte[] result = contract.evaluateTransaction("queryCar", "CAR" + carNo);
-
-                    System.out.println(new String(result));
-
-                    count.getAndIncrement();
                 }
+
+                for(Peer peer:peerList){
+                    if(peer.getName().contains("org2")){
+                        endorsers.add(peer);
+                        break;
+                    }
+                }
+
+                Transaction transaction  = contract.createTransaction("createCar");
+
+                transaction.setEndorsingPeers(endorsers);
+
+                transaction.submit("CAR" + carNo, "VW" + carNo, "Polo", "Grey", "Mary");
+
+                byte[] result = contract.evaluateTransaction("queryCar", "CAR" + carNo);
+
+                System.out.println(new String(result));
+
+                count.getAndIncrement();
             }catch (Exception e){
                 System.out.printf("Thread execution failed on : %s,caused by %s\n","CAR" + carNo,e.getMessage());
             }finally {
@@ -112,7 +115,7 @@ public class ClientApp {
 
         for(int i = 0;i < taskCount;i++){
             executor.submit(new FabcarThread(countDownLatch, i));
-            Thread.sleep(40);
+            Thread.sleep(10);
         }
         countDownLatch.await();
         executor.shutdown();
