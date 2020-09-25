@@ -26,7 +26,7 @@ General:
         # Certificate governs the file location of the server TLS certificate.
         Certificate: tls/server.crt
         RootCAs:
-          - tls/ca.crt
+            - tls/ca.crt
         ClientAuthRequired: false
         ClientRootCAs:
     # Keepalive settings for the GRPC server.
@@ -227,28 +227,28 @@ Kafka:
     # TLS: TLS settings for the orderer's connection to the Kafka cluster.
     TLS:
 
-      # Enabled: Use TLS when connecting to the Kafka cluster.
-      Enabled: false
+        # Enabled: Use TLS when connecting to the Kafka cluster.
+        Enabled: false
 
-      # PrivateKey: PEM-encoded private key the orderer will use for
-      # authentication.
-      PrivateKey:
+        # PrivateKey: PEM-encoded private key the orderer will use for
+        # authentication.
+        PrivateKey:
         # As an alternative to specifying the PrivateKey here, uncomment the
         # following "File" key and specify the file name from which to load the
         # value of PrivateKey.
         #File: path/to/PrivateKey
 
-      # Certificate: PEM-encoded signed public key certificate the orderer will
-      # use for authentication.
-      Certificate:
+        # Certificate: PEM-encoded signed public key certificate the orderer will
+        # use for authentication.
+        Certificate:
         # As an alternative to specifying the Certificate here, uncomment the
         # following "File" key and specify the file name from which to load the
         # value of Certificate.
         #File: path/to/Certificate
 
-      # RootCAs: PEM-encoded trusted root certificates used to validate
-      # certificates from the Kafka cluster.
-      RootCAs:
+        # RootCAs: PEM-encoded trusted root certificates used to validate
+        # certificates from the Kafka cluster.
+        RootCAs:
         # As an alternative to specifying the RootCAs here, uncomment the
         # following "File" key and specify the file name from which to load the
         # value of RootCAs.
@@ -256,12 +256,12 @@ Kafka:
 
     # SASLPlain: Settings for using SASL/PLAIN authentication with Kafka brokers
     SASLPlain:
-      # Enabled: Use SASL/PLAIN to authenticate with Kafka brokers
-      Enabled: false
-      # User: Required when Enabled is set to true
-      User:
-      # Password: Required when Enabled is set to true
-      Password:
+        # Enabled: Use SASL/PLAIN to authenticate with Kafka brokers
+        Enabled: false
+        # User: Required when Enabled is set to true
+        User:
+        # Password: Required when Enabled is set to true
+        Password:
 
     # Kafka protocol version used to communicate with the Kafka cluster brokers
     # (defaults to 0.10.2.0 if not specified)
@@ -327,18 +327,18 @@ Metrics:
 
     # The statsd configuration
     Statsd:
-      # network type: tcp or udp
-      Network: udp
+        # network type: tcp or udp
+        Network: udp
 
-      # the statsd server address
-      Address: 127.0.0.1:8125
+        # the statsd server address
+        Address: 127.0.0.1:8125
 
-      # The interval at which locally cached counters and gauges are pushed
-      # to statsd; timings are pushed immediately
-      WriteInterval: 30s
+        # The interval at which locally cached counters and gauges are pushed
+        # to statsd; timings are pushed immediately
+        WriteInterval: 30s
 
-      # The prefix is prepended to all emitted statsd metrics
-      Prefix:
+        # The prefix is prepended to all emitted statsd metrics
+        Prefix:
 
 
 ################################################################################
